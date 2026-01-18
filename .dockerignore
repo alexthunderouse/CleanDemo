@@ -1,0 +1,35 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# IDE
+.vs
+.vscode
+.idea
+*.user
+*.suo
+
+# Build outputs
+**/bin
+**/obj
+**/out
+**/publish
+
+# Test results
+**/TestResults
+**/coverage
+
+# Docker
+**/Dockerfile*
+**/docker-compose*
+**/.dockerignore
+
+# Documentation
+**/*.md
+!README.md
+
+# Misc
+**/.DS_Store
+**/Thumbs.db
+*.log

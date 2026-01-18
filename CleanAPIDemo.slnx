@@ -1,0 +1,16 @@
+<Solution>
+  <Folder Name="/docs/">
+    <File Path="docs/api_prompt.md" />
+    <File Path="docs/claude_isntal.md" />
+    <File Path="docs/worker_prompt.md" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/CleanAPIDemo.API/CleanAPIDemo.API.csproj" />
+    <Project Path="src/CleanAPIDemo.Application/CleanAPIDemo.Application.csproj" />
+    <Project Path="src/CleanAPIDemo.Domain/CleanAPIDemo.Domain.csproj" />
+    <Project Path="src/CleanAPIDemo.Infrastructure/CleanAPIDemo.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/CleanAPIDemo.Application.Tests/CleanAPIDemo.Application.Tests.csproj" />
+  </Folder>
+</Solution>
