@@ -1,7 +1,6 @@
 using CleanAPIDemo.Domain.Interfaces;
 using CleanAPIDemo.Infrastructure.Persistence;
 using CleanAPIDemo.Infrastructure.Repositories;
-using CleanAPIDemo.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -17,7 +16,6 @@ public static class DependencyInjection
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped<IProductRepository, ProductRepository>();
         services.AddScoped<IProductProcedureRepository, ProductProcedureRepository>();
-        services.AddScoped<IDataSyncService, DataSyncService>();
 
         return services;
     }

@@ -24,6 +24,13 @@ public class ProductRepository : IProductRepository
         return await _context.Products.ToListAsync(cancellationToken);
     }
 
+    public async Task<IEnumerable<Product>> GetProductsForSyncAsync(DateTime olderThan, CancellationToken cancellationToken = default)
+    {
+        return await _context.Products
+            .Where(p => p.UpdatedAt == null || p.UpdatedAt < olderThan)
+            .ToListAsync(cancellationToken);
+    }
+
     public async Task<Product> AddAsync(Product product, CancellationToken cancellationToken = default)
     {
         await _context.Products.AddAsync(product, cancellationToken);
