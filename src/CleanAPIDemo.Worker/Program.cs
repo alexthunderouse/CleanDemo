@@ -29,7 +29,7 @@ builder.Services.AddTransient<DataSyncJob>();
 
 // Add Configuration
 builder.Services
-    .AddOpenTelemetryConfiguration()
+    .AddOpenTelemetryConfiguration(builder.Configuration)
     .AddHealthCheckConfiguration()
     .AddHealthCheckEndpoint(builder.Configuration)
     .AddResilienceConfiguration(builder.Configuration);

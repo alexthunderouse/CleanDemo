@@ -15,6 +15,28 @@ services:
     networks:
       - cleanapi-network
 
+  worker:
+    build:
+      context: .
+      dockerfile: src/CleanAPIDemo.Worker/Dockerfile
+    container_name: cleanapi-worker
+    ports:
+      - "5050:5050"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=CleanAPIDemo;User Id=sa;Password=Your_Strong_Password123;TrustServerCertificate=True
+      - Graylog__Host=graylog
+      - Graylog__Port=12201
+      - DataSyncJob__IntervalMinutes=10
+      - HealthCheck__Port=5050
+      - OpenTelemetry__OtlpEndpoint=http://otel-collector:4317
+    depends_on:
+      sqlserver:
+        condition: service_healthy
+    networks:
+      - cleanapi-network
+    restart: unless-stopped
+
   sqlserver:
     image: mcr.microsoft.com/mssql/server:2022-latest
     container_name: cleanapi-sqlserver

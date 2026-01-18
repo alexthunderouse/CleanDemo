@@ -16,7 +16,8 @@
 **/out
 **/publish
 
-# Test results
+# Tests
+**/tests
 **/TestResults
 **/coverage
 

@@ -3,6 +3,7 @@
     <File Path="docs/api_prompt.md" />
     <File Path="docs/claude_isntall.md" />
     <File Path="docs/worker_prompt.md" />
+    <File Path="structure.md" />
   </Folder>
   <Folder Name="/Solution Items/">
     <File Path=".dockerignore" />
