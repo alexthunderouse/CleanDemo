@@ -12,11 +12,11 @@ namespace CleanAPIDemo.API.Controllers.V2;
 [Route("api/v{version:apiVersion}/[controller]")]
 public class ProductsController : ControllerBase
 {
-    private readonly IMediator _mediator;
+    private readonly ISender _sender;
 
-    public ProductsController(IMediator mediator)
+    public ProductsController(ISender sender)
     {
-        _mediator = mediator;
+        _sender = sender;
     }
 
     [HttpGet("{id:guid}")]
@@ -24,7 +24,7 @@ public class ProductsController : ControllerBase
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetById(Guid id, CancellationToken cancellationToken)
     {
-        var product = await _mediator.Send(new GetProductByIdQuery(id), cancellationToken);
+        var product = await _sender.Send(new GetProductByIdQuery(id), cancellationToken);
 
         if (product is null)
         {
@@ -46,7 +46,7 @@ public class ProductsController : ControllerBase
     public async Task<IActionResult> Create([FromBody] CreateProductDto dto, CancellationToken cancellationToken)
     {
         var command = new CreateProductCommand(dto.Name, dto.Description, dto.Price, dto.Category);
-        var product = await _mediator.Send(command, cancellationToken);
+        var product = await _sender.Send(command, cancellationToken);
 
         return CreatedAtAction(nameof(GetById), new { id = product.Id, version = "2.0" }, product);
     }

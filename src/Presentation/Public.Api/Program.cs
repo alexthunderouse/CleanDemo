@@ -24,7 +24,7 @@ var app = builder.Build();
 // Configure middleware pipeline
 app.UseMiddleware<GlobalExceptionMiddleware>();
 app.UseHealthCheckConfiguration();
-app.UseSerilogRequestLogging();
+app.UseSerilogRequestLoggingConfiguration();
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();

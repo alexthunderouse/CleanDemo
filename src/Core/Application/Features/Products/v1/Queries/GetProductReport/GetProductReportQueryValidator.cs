@@ -9,6 +9,6 @@ public class GetProductReportQueryValidator : AbstractValidator<GetProductReport
         RuleFor(x => x.MinPrice)
             .GreaterThanOrEqualTo(0)
             .When(x => x.MinPrice.HasValue)
-            .WithMessage("Minimum price must be greater than or equal to zero.");
+            .WithMessage("min_price_must_be_non_negative");
     }
 }

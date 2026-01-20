@@ -1,21 +1,71 @@
-Act as a Senior .NET Architect. Generate a .NET 10 Web API solution following Clean Architecture (Domain, Application, Infrastructure, and API projects).
+Act as a Senior .NET Architect. Generate a .NET 10 Web API solution following Clean Architecture principles.
 
-Core Requirements:
+## Project Structure
 
-Data & Mapping: Use EF Core with the Repository pattern. Use Mapperly for high-performance mapping between Entities and DTOs.
+Follow this folder organization:
+```
+src/
+├── Common/                        # Shared utilities (Extensions, Constants)
+├── Core/
+│   ├── Domain/                    # Entities, Exceptions, Interfaces
+│   └── Application/               # Features, Mappings, Common behaviors
+│       ├── Common/Behaviors/      # MediatR Pipeline Behaviors
+│       ├── Mappings/              # Mapperly Mappers
+│       └── Features/{Feature}/v1/ # Versioned Commands, Queries, DTOs
+├── Infrastructure/
+│   ├── Persistence/               # EF Core, Repositories
+│   └── Messaging/                 # Message broker implementations
+└── Presentation/
+    └── Public.Api/                # Controllers, Middleware
+        └── Controllers/v1/        # Versioned controllers
+```
 
-Logic & Validation: Implement the Mediator pattern using MediatR. All requests must be validated using FluentValidation via a MediatR Pipeline Behavior.
+## Core Requirements
 
-Resilience: Configure a Polly v8 Resilience Pipeline in Program.cs that includes a 3-step Exponential Retry and a Circuit Breaker for outbound HTTP calls.
+### Data & Mapping
+- Use EF Core with Repository and Unit of Work patterns
+- Use Mapperly for high-performance mapping (register as Singleton)
+- DTOs must use C# records for immutability
 
-Observability: Setup Serilog with a Graylog sink (GELF).
+### MediatR & Validation
+- Commands/Queries must use C# records: `public record CreateProductCommand(...) : IRequest<ProductDto>`
+- Controllers must inject `ISender` (not `IMediator`)
+- FluentValidation error messages must use snake_case codes: `.WithMessage("name_required")`
+- Implement ValidationBehavior as MediatR Pipeline Behavior
 
-API Standards: Use Scalar for API documentation instead of default Swagger.
+### Exception Handling
+Create custom exception hierarchy in Domain/Exceptions:
+- `DomainException` (base) with Type, Code, StatusCode properties
+- `NotFoundException` (404)
+- `DuplicateEntryException` (409)
+- `BusinessRuleException` (422)
 
-Implement a Global Exception Middleware that returns errors using the Problem Details (RFC 7807) standard.
+Global Exception Middleware must return RFC 7807 responses with:
+- `type`, `title`, `status`, `detail`, `instance`
+- `code` - snake_case translation key
+- `traceId` - for log correlation
+- `timestamp` - UTC time
+- `errors` - validation field errors (for 400)
 
-Enable API Versioning (URL-based).
+### API Versioning
+- URL-based versioning: `/api/v{version:apiVersion}/[controller]`
+- Use `[ApiVersion("1.0")]` attribute on controllers
+- Version-specific DTOs in separate namespaces
 
-Testing: Provide one sample Unit Test using xUnit and NSubstitute for an Application Layer command.
+### Resilience
+Configure Polly v8 Resilience Pipeline with:
+- 3-step Exponential Retry
+- Circuit Breaker for outbound HTTP calls
 
-Create a 'Products' feature (GetById and Create) as an example.
+### Observability
+- Serilog with Graylog sink (GELF)
+- Use structured logging with placeholders: `_logger.LogInformation("User {UserId} created", userId)`
+- Never use string interpolation in log messages
+
+### Documentation
+Use Scalar for API documentation instead of Swagger.
+
+### Testing
+Provide sample Unit Tests using xUnit, NSubstitute, and FluentAssertions.
+
+Create a 'Products' feature (GetById and Create) with v1 implementation as an example.

@@ -15,11 +15,11 @@ namespace CleanAPIDemo.API.Controllers.V1;
 [Route("api/v{version:apiVersion}/[controller]")]
 public class ProductsController : ControllerBase
 {
-    private readonly IMediator _mediator;
+    private readonly ISender _sender;
 
-    public ProductsController(IMediator mediator)
+    public ProductsController(ISender sender)
     {
-        _mediator = mediator;
+        _sender = sender;
     }
 
     [HttpGet("{id:guid}")]
@@ -27,7 +27,7 @@ public class ProductsController : ControllerBase
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetById(Guid id, CancellationToken cancellationToken)
     {
-        var product = await _mediator.Send(new GetProductByIdQuery(id), cancellationToken);
+        var product = await _sender.Send(new GetProductByIdQuery(id), cancellationToken);
 
         if (product is null)
         {
@@ -49,7 +49,7 @@ public class ProductsController : ControllerBase
     public async Task<IActionResult> Create([FromBody] CreateProductDto dto, CancellationToken cancellationToken)
     {
         var command = new CreateProductCommand(dto.Name, dto.Description, dto.Price);
-        var product = await _mediator.Send(command, cancellationToken);
+        var product = await _sender.Send(command, cancellationToken);
 
         return CreatedAtAction(nameof(GetById), new { id = product.Id, version = "1.0" }, product);
     }
@@ -63,7 +63,7 @@ public class ProductsController : ControllerBase
     public async Task<IActionResult> GetByCategory(string priceCategory, CancellationToken cancellationToken)
     {
         var query = new GetProductsByCategoryQuery(priceCategory);
-        var products = await _mediator.Send(query, cancellationToken);
+        var products = await _sender.Send(query, cancellationToken);
 
         return Ok(products);
     }
@@ -77,7 +77,7 @@ public class ProductsController : ControllerBase
     public async Task<IActionResult> GetReport([FromQuery] decimal? minPrice, CancellationToken cancellationToken)
     {
         var query = new GetProductReportQuery(minPrice);
-        var report = await _mediator.Send(query, cancellationToken);
+        var report = await _sender.Send(query, cancellationToken);
 
         return Ok(report);
     }
@@ -90,7 +90,7 @@ public class ProductsController : ControllerBase
     public async Task<IActionResult> GetSummary(CancellationToken cancellationToken)
     {
         var query = new GetProductSummaryViewQuery();
-        var summary = await _mediator.Send(query, cancellationToken);
+        var summary = await _sender.Send(query, cancellationToken);
 
         return Ok(summary);
     }

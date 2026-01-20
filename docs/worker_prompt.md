@@ -1,19 +1,71 @@
 Act as a Senior .NET Developer. Create a .NET 10 Worker Service project designed for background processing and scheduled tasks.
 
-Core Requirements:
+## Project Structure
 
-Job Scheduling: Use Coravel to handle task scheduling. Define a sample job DataSyncJob that runs every 10 minutes.
+Place the Worker in the Presentation layer:
+```
+src/
+├── Core/
+│   └── Application/               # Shared business logic, Commands/Handlers
+├── Infrastructure/
+│   └── Persistence/               # Data access
+└── Presentation/
+    └── Workers/
+        └── ReportWorker/          # Worker service project
+            ├── Configuration/     # Service configurations
+            ├── Jobs/              # Coravel job implementations
+            └── Options/           # Options classes
+```
 
-Architecture: Maintain a clean separation of concerns. The Job should call a Service layer for business logic.
+## Core Requirements
 
-Observability: Setup Serilog with a Graylog sink (GELF).
+### Job Scheduling
+- Use Coravel for task scheduling
+- Define jobs in the Jobs/ folder
+- Sample: DataSyncJob that runs every 10 minutes
 
-Integrate OpenTelemetry for background worker instrumentation.
+### Architecture
+- Jobs should delegate to Application layer handlers via MediatR
+- Use `ISender` to send commands from jobs
+- Maintain clean separation: Job → Command → Handler → Repository
 
-Health Checks: Implement a Health Check endpoint (using a small background HTTP listener or a file-based check) so the orchestrator knows the service is alive.
+### Configuration (Options Pattern)
+Options classes must include `const SectionName`:
+```csharp
+public class DataSyncJobOptions
+{
+    public const string SectionName = "DataSyncJob";
+    public string CronSchedule { get; set; } = "*/10 * * * *";
+    public int BatchSize { get; set; } = 100;
+}
+```
 
-Configuration: Use the Options Pattern for job settings (e.g., cron schedules or API keys) in appsettings.json.
+Register with: `services.Configure<DataSyncJobOptions>(config.GetSection(DataSyncJobOptions.SectionName))`
 
-Resilience: Wrap the Job's internal logic in a Polly retry policy to handle transient database or network issues during execution.
+### Observability
+- Serilog with Graylog sink (GELF)
+- Use structured logging with placeholders (never string interpolation):
+```csharp
+_logger.LogInformation("Processing batch {BatchId} with {ItemCount} items", batchId, count);
+```
+- OpenTelemetry for worker instrumentation
+- Log job start/completion with execution duration
+
+### Health Checks
+Implement health check endpoint for orchestrator monitoring.
+
+### Resilience
+- Wrap job logic in Polly retry policy
+- Handle transient database/network failures
+- Log retry attempts with structured logging
+
+### Error Handling
+- Use domain exceptions from Core/Domain/Exceptions
+- Log errors with context: `_logger.LogError(ex, "Job {JobName} failed for batch {BatchId}", jobName, batchId)`
+
+### Testing
+Provide unit tests using xUnit, NSubstitute, and FluentAssertions for:
+- Job execution logic
+- Command handlers
 
 Show the Program.cs registration for Coravel and the DataSyncJob implementation.

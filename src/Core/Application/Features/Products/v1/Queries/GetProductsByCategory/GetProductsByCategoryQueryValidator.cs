@@ -9,8 +9,8 @@ public class GetProductsByCategoryQueryValidator : AbstractValidator<GetProducts
     public GetProductsByCategoryQueryValidator()
     {
         RuleFor(x => x.PriceCategory)
-            .NotEmpty().WithMessage("Price category is required.")
+            .NotEmpty().WithMessage("price_category_required")
             .Must(category => ValidCategories.Contains(category, StringComparer.OrdinalIgnoreCase))
-            .WithMessage($"Price category must be one of: {string.Join(", ", ValidCategories)}.");
+            .WithMessage("price_category_invalid");
     }
 }
