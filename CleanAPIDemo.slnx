@@ -28,6 +28,9 @@
     <Project Path="tests/Unit/CleanAPIDemo.Worker.Tests/CleanAPIDemo.Worker.Tests.csproj" />
   </Folder>
   <Folder Name="/tests/Integration/" />
+  <Folder Name="/tests/Benchmarks/">
+    <Project Path="tests/Benchmarks/CleanAPIDemo.Benchmarks/CleanAPIDemo.Benchmarks.csproj" />
+  </Folder>
   <Folder Name="/deploy/">
     <File Path="deploy/docker/docker-compose.yml" />
   </Folder>
