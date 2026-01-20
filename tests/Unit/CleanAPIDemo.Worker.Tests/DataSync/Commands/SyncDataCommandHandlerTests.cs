@@ -1,4 +1,4 @@
-using CleanAPIDemo.Application.DataSync.Commands.SyncData;
+using CleanAPIDemo.Application.Features.DataSync.Commands.SyncData;
 using CleanAPIDemo.Domain.Entities;
 using CleanAPIDemo.Domain.Interfaces;
 using FluentAssertions;

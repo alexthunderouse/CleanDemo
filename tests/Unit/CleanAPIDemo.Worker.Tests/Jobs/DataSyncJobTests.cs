@@ -1,5 +1,5 @@
-using CleanAPIDemo.Application.DataSync.Commands.SyncData;
-using CleanAPIDemo.Application.DataSync.DTOs;
+using CleanAPIDemo.Application.Features.DataSync.Commands.SyncData;
+using CleanAPIDemo.Application.Features.DataSync.DTOs;
 using CleanAPIDemo.Worker.Jobs;
 using FluentAssertions;
 using MediatR;

@@ -20,8 +20,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\CleanAPIDemo.Application\CleanAPIDemo.Application.csproj" />
-    <ProjectReference Include="..\..\src\CleanAPIDemo.Worker\CleanAPIDemo.Worker.csproj" />
+    <ProjectReference Include="..\..\..\src\Core\Application\CleanAPIDemo.Application.csproj" />
+    <ProjectReference Include="..\..\..\src\Presentation\Workers\ReportWorker\CleanAPIDemo.Worker.csproj" />
   </ItemGroup>
 
 </Project>

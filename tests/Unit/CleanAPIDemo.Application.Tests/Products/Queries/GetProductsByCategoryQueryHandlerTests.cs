@@ -1,5 +1,5 @@
-using CleanAPIDemo.Application.Common.Mappings;
-using CleanAPIDemo.Application.Products.Queries.V1.GetProductsByCategory;
+using CleanAPIDemo.Application.Mappings;
+using CleanAPIDemo.Application.Features.Products.v1.Queries.GetProductsByCategory;
 using CleanAPIDemo.Domain.Entities.StoredProcedures;
 using CleanAPIDemo.Domain.Interfaces;
 using FluentAssertions;

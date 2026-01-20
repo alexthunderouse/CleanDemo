@@ -1,5 +1,5 @@
-using CleanAPIDemo.Application.Common.Mappings;
-using CleanAPIDemo.Application.Products.Commands.V1.CreateProduct;
+using CleanAPIDemo.Application.Mappings;
+using CleanAPIDemo.Application.Features.Products.v1.Commands.CreateProduct;
 using CleanAPIDemo.Domain.Entities;
 using CleanAPIDemo.Domain.Interfaces;
 using FluentAssertions;

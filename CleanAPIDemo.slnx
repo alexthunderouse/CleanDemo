@@ -9,17 +9,26 @@
   <Folder Name="/Solution Items/">
     <File Path=".dockerignore" />
     <File Path=".gitignore" />
-    <File Path="docker-compose.yml" />
+    <File Path="deploy/docker/docker-compose.yml" />
   </Folder>
-  <Folder Name="/src/">
-    <Project Path="src/CleanAPIDemo.API/CleanAPIDemo.API.csproj" />
-    <Project Path="src/CleanAPIDemo.Application/CleanAPIDemo.Application.csproj" />
-    <Project Path="src/CleanAPIDemo.Domain/CleanAPIDemo.Domain.csproj" />
-    <Project Path="src/CleanAPIDemo.Infrastructure/CleanAPIDemo.Infrastructure.csproj" />
-    <Project Path="src/CleanAPIDemo.Worker/CleanAPIDemo.Worker.csproj" />
+  <Folder Name="/src/Common/" />
+  <Folder Name="/src/Core/">
+    <Project Path="src/Core/Domain/CleanAPIDemo.Domain.csproj" />
+    <Project Path="src/Core/Application/CleanAPIDemo.Application.csproj" />
   </Folder>
-  <Folder Name="/tests/">
-    <Project Path="tests/CleanAPIDemo.Application.Tests/CleanAPIDemo.Application.Tests.csproj" />
-    <Project Path="tests/CleanAPIDemo.Worker.Tests/CleanAPIDemo.Worker.Tests.csproj" />
+  <Folder Name="/src/Infrastructure/">
+    <Project Path="src/Infrastructure/Persistence/CleanAPIDemo.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/src/Presentation/">
+    <Project Path="src/Presentation/Public.Api/CleanAPIDemo.API.csproj" />
+    <Project Path="src/Presentation/Workers/ReportWorker/CleanAPIDemo.Worker.csproj" />
+  </Folder>
+  <Folder Name="/tests/Unit/">
+    <Project Path="tests/Unit/CleanAPIDemo.Application.Tests/CleanAPIDemo.Application.Tests.csproj" />
+    <Project Path="tests/Unit/CleanAPIDemo.Worker.Tests/CleanAPIDemo.Worker.Tests.csproj" />
+  </Folder>
+  <Folder Name="/tests/Integration/" />
+  <Folder Name="/deploy/">
+    <File Path="deploy/docker/docker-compose.yml" />
   </Folder>
 </Solution>
