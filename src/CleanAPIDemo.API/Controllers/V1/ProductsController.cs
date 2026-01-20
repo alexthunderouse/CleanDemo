@@ -1,10 +1,10 @@
 using Asp.Versioning;
-using CleanAPIDemo.Application.Products.Commands.CreateProduct;
-using CleanAPIDemo.Application.Products.DTOs;
-using CleanAPIDemo.Application.Products.Queries.GetProductById;
-using CleanAPIDemo.Application.Products.Queries.GetProductReport;
-using CleanAPIDemo.Application.Products.Queries.GetProductsByCategory;
-using CleanAPIDemo.Application.Products.Queries.GetProductSummaryView;
+using CleanAPIDemo.Application.Products.Commands.V1.CreateProduct;
+using CleanAPIDemo.Application.Products.DTOs.V1;
+using CleanAPIDemo.Application.Products.Queries.V1.GetProductById;
+using CleanAPIDemo.Application.Products.Queries.V1.GetProductReport;
+using CleanAPIDemo.Application.Products.Queries.V1.GetProductsByCategory;
+using CleanAPIDemo.Application.Products.Queries.V1.GetProductSummaryView;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

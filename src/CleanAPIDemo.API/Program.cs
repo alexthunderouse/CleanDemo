@@ -14,7 +14,6 @@ builder.Services
     .AddInfrastructure(builder.Configuration.GetConnectionString("DefaultConnection")
         ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found."))
     .AddApiVersioningConfiguration()
-    .AddSwaggerConfiguration()
     .AddResilienceConfiguration()
     .AddOpenTelemetryConfiguration()
     .AddHealthCheckConfiguration()
@@ -24,7 +23,6 @@ var app = builder.Build();
 
 // Configure middleware pipeline
 app.UseMiddleware<GlobalExceptionMiddleware>();
-app.UseSwaggerConfiguration();
 app.UseHealthCheckConfiguration();
 app.UseSerilogRequestLogging();
 app.UseHttpsRedirection();

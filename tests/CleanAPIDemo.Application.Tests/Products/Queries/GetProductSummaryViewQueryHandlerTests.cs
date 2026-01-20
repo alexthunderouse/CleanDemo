@@ -1,5 +1,5 @@
 using CleanAPIDemo.Application.Common.Mappings;
-using CleanAPIDemo.Application.Products.Queries.GetProductSummaryView;
+using CleanAPIDemo.Application.Products.Queries.V1.GetProductSummaryView;
 using CleanAPIDemo.Domain.Entities.Views;
 using CleanAPIDemo.Domain.Interfaces;
 using FluentAssertions;
