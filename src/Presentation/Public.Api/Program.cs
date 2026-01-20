@@ -34,7 +34,8 @@ app.MapOpenApi();
 app.MapScalarApiReference(options =>
 {
     options.WithTitle("CleanAPIDemo API")
-           .WithDefaultHttpClient(ScalarTarget.CSharp, ScalarClient.HttpClient);
+        .WithDefaultHttpClient(ScalarTarget.CSharp, ScalarClient.HttpClient);
+    options.WithTheme(ScalarTheme.Moon);
 });
 
 app.UseAuthorization();
