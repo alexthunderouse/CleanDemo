@@ -20,15 +20,25 @@
   </Folder>
   <Folder Name="/src/" />
   <Folder Name="/src/Common/" />
-  <Folder Name="/src/Common/Constants/" />
-  <Folder Name="/src/Common/Extensions/" />
+  <Folder Name="/src/Common/Constants/">
+    <File Path="src/Common/Constants/ApiConstants.cs" />
+    <File Path="src/Common/Constants/ErrorCodes.cs" />
+    <File Path="src/Common/Constants/ValidationConstants.cs" />
+  </Folder>
+  <Folder Name="/src/Common/Extensions/">
+    <File Path="src/Common/Extensions/StringExtensions.cs" />
+  </Folder>
   <Folder Name="/src/Core/">
     <Project Path="src/Core/Application/CleanAPIDemo.Application.csproj" />
     <Project Path="src/Core/Domain/CleanAPIDemo.Domain.csproj" />
   </Folder>
   <Folder Name="/src/Infrastructure/" />
-  <Folder Name="/src/Infrastructure/ExternalClients/" />
-  <Folder Name="/src/Infrastructure/Messaging/" />
+  <Folder Name="/src/Infrastructure/ExternalClients/">
+    <File Path="SomeClientRepository.cs" />
+  </Folder>
+  <Folder Name="/src/Infrastructure/Messaging/">
+    <File Path="SomeMessagingRepository.cs" />
+  </Folder>
   <Folder Name="/src/Infrastructure/Persistance/">
     <Project Path="src/Infrastructure/Persistence/CleanAPIDemo.Infrastructure.csproj" />
   </Folder>
