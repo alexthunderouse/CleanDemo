@@ -19,4 +19,16 @@ public static class DependencyInjection
 
         return services;
     }
+
+    public static IServiceCollection AddInfrastructureInMemory(this IServiceCollection services, string databaseName = "CleanAPIDemoDb")
+    {
+        services.AddDbContext<ApplicationDbContext>(options =>
+            options.UseInMemoryDatabase(databaseName));
+
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
+        services.AddScoped<IProductRepository, ProductRepository>();
+        services.AddScoped<IProductProcedureRepository, ProductProcedureRepository>();
+
+        return services;
+    }
 }

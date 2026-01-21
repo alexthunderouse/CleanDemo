@@ -2,6 +2,7 @@ using CleanAPIDemo.API.Configuration;
 using CleanAPIDemo.API.Middleware;
 using CleanAPIDemo.Application;
 using CleanAPIDemo.Infrastructure;
+using CleanAPIDemo.Infrastructure.Persistence;
 using Scalar.AspNetCore;
 using Serilog;
 
@@ -12,8 +13,7 @@ builder.ConfigureSerilog();
 
 builder.Services
     .AddApplication()
-    .AddInfrastructure(builder.Configuration.GetConnectionString("DefaultConnection")
-        ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found."))
+    .AddInfrastructureInMemory()
     .AddApiVersioningConfiguration()
     .AddResilienceConfiguration()
     .AddOpenTelemetryConfiguration()
@@ -22,6 +22,9 @@ builder.Services
     .AddControllers();
 
 var app = builder.Build();
+
+// Seed the database
+DatabaseSeeder.SeedDatabase(app.Services);
 
 // Configure middleware pipeline
 app.UseMiddleware<GlobalExceptionMiddleware>();
