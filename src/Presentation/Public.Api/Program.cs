@@ -16,7 +16,6 @@ builder.Services
     .AddInfrastructureInMemory()
     .AddApiVersioningConfiguration()
     .AddResilienceConfiguration()
-    .AddOpenTelemetryConfiguration()
     .AddHealthCheckConfiguration()
     .AddOpenApi()
     .AddControllers();

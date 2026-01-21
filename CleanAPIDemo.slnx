@@ -1,4 +1,11 @@
 <Solution>
+  <Folder Name="/deploy/docker/">
+    <File Path="deploy/docker/docker-compose.yml" />
+  </Folder>
+  <Folder Name="/deploy/ngnix/">
+    <File Path="DockerFile" />
+    <File Path="nginx.dev.conf" />
+  </Folder>
   <Folder Name="/docs/">
     <File Path="docs/api_prompt.md" />
     <File Path="docs/claude_isntall.md" />
@@ -10,14 +17,19 @@
   <Folder Name="/Solution Items/">
     <File Path=".dockerignore" />
     <File Path=".gitignore" />
-    <File Path="deploy/docker/docker-compose.yml" />
   </Folder>
+  <Folder Name="/src/" />
   <Folder Name="/src/Common/" />
+  <Folder Name="/src/Common/Constants/" />
+  <Folder Name="/src/Common/Extensions/" />
   <Folder Name="/src/Core/">
-    <Project Path="src/Core/Domain/CleanAPIDemo.Domain.csproj" />
     <Project Path="src/Core/Application/CleanAPIDemo.Application.csproj" />
+    <Project Path="src/Core/Domain/CleanAPIDemo.Domain.csproj" />
   </Folder>
-  <Folder Name="/src/Infrastructure/">
+  <Folder Name="/src/Infrastructure/" />
+  <Folder Name="/src/Infrastructure/ExternalClients/" />
+  <Folder Name="/src/Infrastructure/Messaging/" />
+  <Folder Name="/src/Infrastructure/Persistance/">
     <Project Path="src/Infrastructure/Persistence/CleanAPIDemo.Infrastructure.csproj" />
   </Folder>
   <Folder Name="/src/Presentation/">
@@ -29,10 +41,9 @@
     <Project Path="tests/Unit/CleanAPIDemo.Worker.Tests/CleanAPIDemo.Worker.Tests.csproj" />
   </Folder>
   <Folder Name="/tests/Integration/" />
+  <Folder Name="/tests/" />
   <Folder Name="/tests/Benchmarks/">
     <Project Path="tests/Benchmarks/CleanAPIDemo.Benchmarks/CleanAPIDemo.Benchmarks.csproj" />
   </Folder>
-  <Folder Name="/deploy/">
-    <File Path="deploy/docker/docker-compose.yml" />
-  </Folder>
+  <Folder Name="/deploy/" />
 </Solution>

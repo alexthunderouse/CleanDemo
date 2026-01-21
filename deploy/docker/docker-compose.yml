@@ -23,13 +23,12 @@ services:
     ports:
       - "5050:5050"
     environment:
-      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=CleanAPIDemo;User Id=sa;Password=Your_Strong_Password123;TrustServerCertificate=True
       - Graylog__Host=graylog
       - Graylog__Port=12201
       - DataSyncJob__IntervalMinutes=10
       - HealthCheck__Port=5050
-      - OpenTelemetry__OtlpEndpoint=http://otel-collector:4317
     depends_on:
       sqlserver:
         condition: service_healthy

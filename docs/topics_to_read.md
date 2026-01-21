@@ -241,22 +241,6 @@ Log.Information("Processing order {OrderId} for {Customer}", orderId, customer);
 - **GitHub:** https://github.com/serilog/serilog
 - **ASP.NET Core:** https://github.com/serilog/serilog-aspnetcore
 
-### OpenTelemetry
-
-A vendor-neutral observability framework for generating, collecting, and exporting telemetry data (traces, metrics, logs). Enables distributed tracing across microservices.
-
-**Packages Used:**
-- `OpenTelemetry.Extensions.Hosting` - .NET hosting integration
-- `OpenTelemetry.Instrumentation.AspNetCore` - ASP.NET Core instrumentation
-- `OpenTelemetry.Instrumentation.Http` - HTTP client instrumentation
-- `OpenTelemetry.Instrumentation.Runtime` - Runtime metrics
-- `OpenTelemetry.Exporter.Console` - Console exporter
-- `OpenTelemetry.Exporter.OpenTelemetryProtocol` - OTLP exporter
-
-- **Documentation:** https://opentelemetry.io/docs/
-- **.NET SDK:** https://opentelemetry.io/docs/languages/net/
-- **GitHub:** https://github.com/open-telemetry/opentelemetry-dotnet
-
 ### Graylog
 
 A centralized log management platform. Used via Serilog sink to aggregate and analyze logs from multiple services.
@@ -403,7 +387,6 @@ Microsoft SQL Server running in a Docker container. Used as the production datab
 | Versioning | Asp.Versioning | API versioning |
 | Resilience | Polly | Fault handling |
 | Logging | Serilog | Structured logging |
-| Tracing | OpenTelemetry | Distributed tracing |
 | Scheduling | Coravel | Background jobs |
 | Testing | xUnit | Unit tests |
 | Mocking | NSubstitute | Test mocks |
@@ -428,7 +411,6 @@ Microsoft SQL Server running in a Docker container. Used as the production datab
 8. Docker basics
 
 ### Advanced
-9. OpenTelemetry and distributed tracing
-10. Polly resilience patterns
-11. BenchmarkDotNet performance optimization
-12. Advanced EF Core (migrations, optimization)
+9. Polly resilience patterns
+10. BenchmarkDotNet performance optimization
+11. Advanced EF Core (migrations, optimization)
