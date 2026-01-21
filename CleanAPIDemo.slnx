@@ -34,10 +34,10 @@
   </Folder>
   <Folder Name="/src/Infrastructure/" />
   <Folder Name="/src/Infrastructure/ExternalClients/">
-    <File Path="EmailSender.cs" />
+    <File Path="src/Infrastructure/ExternalClients/EmailSender.cs" />
   </Folder>
   <Folder Name="/src/Infrastructure/Messaging/">
-    <File Path="RabbitMQBrocker.cs" />
+    <File Path="src/Infrastructure/Messaging/RabbitMQBrocker.cs" />
   </Folder>
   <Folder Name="/src/Infrastructure/Persistance/">
     <Project Path="src/Infrastructure/Persistence/CleanAPIDemo.Infrastructure.csproj" />
