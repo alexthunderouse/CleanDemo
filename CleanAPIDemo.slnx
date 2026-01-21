@@ -5,6 +5,7 @@
     <File Path="docs/worker_prompt.md" />
     <File Path="docs/standards.md" />
     <File Path="docs/structure.md" />
+    <File Path="docs/topics_to_read.md" />
   </Folder>
   <Folder Name="/Solution Items/">
     <File Path=".dockerignore" />
