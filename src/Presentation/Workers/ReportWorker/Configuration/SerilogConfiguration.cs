@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Builder;
 using Serilog;
 using Serilog.Sinks.Graylog;
 using Serilog.Sinks.Graylog.Core.Transport;
@@ -6,7 +7,7 @@ namespace CleanAPIDemo.Worker.Configuration;
 
 public static class SerilogConfiguration
 {
-    public static void ConfigureSerilog(this HostApplicationBuilder builder)
+    public static void ConfigureSerilog(this WebApplicationBuilder builder)
     {
         builder.Services.AddSerilog((services, configuration) =>
         {

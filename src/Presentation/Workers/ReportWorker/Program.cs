@@ -6,16 +6,14 @@ using CleanAPIDemo.Worker.Options;
 using Coravel;
 using Serilog;
 
-var builder = Host.CreateApplicationBuilder(args);
+var builder = WebApplication.CreateBuilder(args);
 
 // Configure Serilog with Graylog sink
 builder.ConfigureSerilog();
 
 // Configure Options
-builder.Services.Configure<DataSyncJobOptions>(
-    builder.Configuration.GetSection(DataSyncJobOptions.SectionName));
-builder.Services.Configure<GraylogOptions>(
-    builder.Configuration.GetSection(GraylogOptions.SectionName));
+builder.Services.Configure<DataSyncJobOptions>(builder.Configuration.GetSection(DataSyncJobOptions.SectionName));
+builder.Services.Configure<GraylogOptions>(builder.Configuration.GetSection(GraylogOptions.SectionName));
 
 // Add Application and Infrastructure layers
 builder.Services
@@ -30,13 +28,15 @@ builder.Services.AddTransient<DataSyncJob>();
 // Add Configuration
 builder.Services
     .AddHealthCheckConfiguration()
-    .AddHealthCheckEndpoint(builder.Configuration)
     .AddResilienceConfiguration(builder.Configuration);
 
-var host = builder.Build();
+var app = builder.Build();
+
+// Map health check endpoint
+app.MapHealthChecks("/health");
 
 // Configure Coravel Job Scheduling
-host.Services.UseScheduler(scheduler =>
+app.Services.UseScheduler(scheduler =>
 {
     var options = builder.Configuration
         .GetSection(DataSyncJobOptions.SectionName)
@@ -53,4 +53,4 @@ host.Services.UseScheduler(scheduler =>
 });
 
 Log.Information("Starting CleanAPIDemo Worker Service");
-host.Run();
+app.Run();

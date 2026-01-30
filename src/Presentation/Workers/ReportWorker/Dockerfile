@@ -41,9 +41,12 @@ RUN chown -R workeruser:workergroup /app
 # Switch to non-root user
 USER workeruser
 
+# Expose port for health checks
+EXPOSE 8080
+
 # Health check endpoint
 HEALTHCHECK --interval=30s --timeout=10s --start-period=10s --retries=3 \
-    CMD curl -f http://localhost:5050/health/ || exit 1
+    CMD curl -f http://localhost:8080/health || exit 1
 
 # Set environment variables
 ENV ASPNETCORE_ENVIRONMENT=Production
